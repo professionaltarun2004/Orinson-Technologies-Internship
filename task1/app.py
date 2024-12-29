@@ -1,5 +1,9 @@
 import joblib
-model = joblib.load('model.pkl')
+import os
+current_dir = os.path.dirname(__file__)
+model_path = os.path.join(current_dir, 'model.pkl')
+model = joblib.load(model_path)
+#model = joblib.load('model.pkl')
 def predict(input_data):
     # Assuming `input_data` is a list of features
     prediction = model.predict([input_data])
