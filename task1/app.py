@@ -2,6 +2,8 @@ import joblib
 import os
 import streamlit as st
 from PIL import Image
+import plotly.express as px
+import pandas as pd
 
 # Set page configuration
 st.set_page_config(
@@ -45,6 +47,14 @@ if input_data:
         st.write(predictions)
     except ValueError:
         st.error("Invalid input format. Please ensure all inputs are numeric and separated by commas.")
+
+# Real-time data visualization
+st.header("Real-Time Data Visualization")
+if input_data:
+    data_dict = {f"Feature {i+1}": [float(x)] for i, x in enumerate(input_data.split(","))}
+    df = pd.DataFrame(data_dict)
+    fig = px.bar(df, x=df.columns, y=df.iloc[0], title="Feature Values")
+    st.plotly_chart(fig)
 
 # Footer with contact information
 st.markdown("---")
