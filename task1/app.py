@@ -1,8 +1,9 @@
 import joblib
 import os
 import streamlit as st
-from PIL import Image
-import plotly.express as px
+import matplotlib.pyplot as plt
+import numpy as np
+import time
 import pandas as pd
 
 # Set page configuration
@@ -53,8 +54,12 @@ st.header("Real-Time Data Visualization")
 if input_data:
     data_dict = {f"Feature {i+1}": [float(x)] for i, x in enumerate(input_data.split(","))}
     df = pd.DataFrame(data_dict)
-    fig = px.bar(df, x=df.columns, y=df.iloc[0], title="Feature Values")
-    st.plotly_chart(fig)
+    fig, ax = plt.subplots()
+    ax.bar(df.columns, df.iloc[0])
+    ax.set_title("Feature Values")
+    ax.set_xlabel("Features")
+    ax.set_ylabel("Values")
+    st.pyplot(fig)
 
 # Footer with contact information
 st.markdown("---")
