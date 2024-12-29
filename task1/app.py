@@ -15,7 +15,8 @@ st.set_page_config(
 )
 
 # Load model
-current_dir = os.path.dirname(__file__)
+current_dir = os.getcwd()
+#current_dir = os.path.dirname(__file__)
 model_path = os.path.join(current_dir, 'model.pkl')
 model = joblib.load(model_path)
 
