@@ -18,7 +18,7 @@ st.set_page_config(
 st.markdown("""
     <style>
         body {
-            background-image: url('"C:\\Users\\DELL\\Downloads\\aiimg.jpg"');
+            background-image: url('C:\\Users\\DELL\\Downloads\\aiimg.jpg');
             background-size: cover;
             color: white;
         }
@@ -85,36 +85,7 @@ if input_data:
     data_dict = {f"Feature {i+1}": [float(x)] for i, x in enumerate(input_data.split(","))}
     df = pd.DataFrame(data_dict)
 
-    # Add a dropdown menu for operations
-    operation = st.selectbox(
-        "Choose operation",
-        ["Sum", "Max", "Min", "Mean", "Median", "Variance", "Standard Deviation", "Skewness", "Kurtosis"]
-    )
-
-    # Perform the selected operation
-    if operation == "Sum":
-        result = df.sum().iloc[0]
-    elif operation == "Max":
-        result = df.max().iloc[0]
-    elif operation == "Min":
-        result = df.min().iloc[0]
-    elif operation == "Mean":
-        result = df.mean().iloc[0]
-    elif operation == "Median":
-        result = df.median().iloc[0]
-    elif operation == "Variance":
-        result = df.var().iloc[0]
-    elif operation == "Standard Deviation":
-        result = df.std().iloc[0]
-    elif operation == "Skewness":
-        result = df.skew().iloc[0]
-    elif operation == "Kurtosis":
-        result = df.kurtosis().iloc[0]
-
-    # Display the result
-    st.write(f"Result of {operation}: {result}")
-
-    # Display multiple types of visualizations
+    # Display 6 types of plots
     st.subheader("Multiple Visualizations")
 
     fig, axes = plt.subplots(2, 3, figsize=(18, 10))
@@ -160,6 +131,32 @@ if input_data:
     # Data distribution chart
     st.header("Data Distribution")
     st.bar_chart(df.transpose())
+
+    # Add interactive operations for visualizations
+    st.subheader("Perform Operations on Data")
+    operation = st.selectbox(
+        "Choose operation",
+        ["Sum", "Max", "Min", "Mean", "Median", "Standard Deviation", "Variance"]
+    )
+
+    # Perform the selected operation
+    if operation == "Sum":
+        result = df.sum().iloc[0]
+    elif operation == "Max":
+        result = df.max().iloc[0]
+    elif operation == "Min":
+        result = df.min().iloc[0]
+    elif operation == "Mean":
+        result = df.mean().iloc[0]
+    elif operation == "Median":
+        result = df.median().iloc[0]
+    elif operation == "Standard Deviation":
+        result = df.std().iloc[0]
+    elif operation == "Variance":
+        result = df.var().iloc[0]
+
+    # Display the result
+    st.write(f"Result of {operation}: {result}")
 
 # Footer with contact information and a call to action
 st.markdown("---")
