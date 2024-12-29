@@ -16,7 +16,6 @@ st.set_page_config(
 
 # Load model
 current_dir = os.getcwd()
-#current_dir = os.path.dirname(__file__)
 model_path = os.path.join(current_dir, 'model.pkl')
 model = joblib.load(model_path)
 
@@ -55,12 +54,59 @@ st.header("Real-Time Data Visualization")
 if input_data:
     data_dict = {f"Feature {i+1}": [float(x)] for i, x in enumerate(input_data.split(","))}
     df = pd.DataFrame(data_dict)
+
+    # Bar Chart
     fig, ax = plt.subplots()
-    ax.bar(df.columns, df.iloc[0])
-    ax.set_title("Feature Values")
+    ax.bar(df.columns, df.iloc[0], color='skyblue')
+    ax.set_title("Feature Values (Bar Chart)")
     ax.set_xlabel("Features")
     ax.set_ylabel("Values")
     st.pyplot(fig)
+
+    # Line Plot
+    fig, ax = plt.subplots()
+    ax.plot(df.columns, df.iloc[0], color='green', marker='o', linestyle='-', linewidth=2, markersize=8)
+    ax.set_title("Feature Values (Line Plot)")
+    ax.set_xlabel("Features")
+    ax.set_ylabel("Values")
+    ax.grid(True)
+    st.pyplot(fig)
+
+    # Scatter Plot
+    fig, ax = plt.subplots()
+    ax.scatter(df.columns, df.iloc[0], color='red', s=100, edgecolors='black')
+    ax.set_title("Feature Values (Scatter Plot)")
+    ax.set_xlabel("Features")
+    ax.set_ylabel("Values")
+    st.pyplot(fig)
+
+    # Customizable Plot Type
+    st.sidebar.header("Choose Plot Type")
+    plot_type = st.sidebar.selectbox("Select Visualization Type", ["Bar", "Line", "Scatter"])
+
+    # Update plot based on selected type
+    if plot_type == "Bar":
+        fig, ax = plt.subplots()
+        ax.bar(df.columns, df.iloc[0], color='skyblue')
+        ax.set_title("Feature Values (Bar Chart)")
+        ax.set_xlabel("Features")
+        ax.set_ylabel("Values")
+        st.pyplot(fig)
+    elif plot_type == "Line":
+        fig, ax = plt.subplots()
+        ax.plot(df.columns, df.iloc[0], color='purple', marker='o', linestyle='-', linewidth=2, markersize=8)
+        ax.set_title("Feature Values (Line Plot)")
+        ax.set_xlabel("Features")
+        ax.set_ylabel("Values")
+        ax.grid(True)
+        st.pyplot(fig)
+    else:
+        fig, ax = plt.subplots()
+        ax.scatter(df.columns, df.iloc[0], color='orange', s=100, edgecolors='black')
+        ax.set_title("Feature Values (Scatter Plot)")
+        ax.set_xlabel("Features")
+        ax.set_ylabel("Values")
+        st.pyplot(fig)
 
 # Footer with contact information
 st.markdown("---")
