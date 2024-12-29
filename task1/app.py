@@ -15,9 +15,17 @@ st.set_page_config(
 )
 
 # Load model
-current_dir = os.getcwd()
-model_path = os.path.join(current_dir, 'model.pkl')
-model = joblib.load(model_path)
+# current_dir = os.getcwd()
+# model_path = os.path.join(current_dir, 'model.pkl')
+# model = joblib.load(model_path)
+
+model_path = 'model.pkl'
+if os.path.exists(model_path):
+    model = joblib.load(model_path)
+    st.success("Model loaded successfully!")
+else:
+    st.error(f"Model file not found at {model_path}. Please upload the model file.")
+
 
 # Sidebar for navigation
 st.sidebar.title("Navigation")
