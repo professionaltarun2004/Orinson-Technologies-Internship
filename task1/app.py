@@ -18,7 +18,7 @@ st.set_page_config(
 st.markdown("""
     <style>
         body {
-            background-image: url('https://images.unsplash.com/photo-1506748686218-54d23f5d87e1');
+            background-image: url('"C:\Users\DELL\Downloads\aiimg.jpg"');
             background-size: cover;
             color: white;
         }
