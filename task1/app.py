@@ -18,7 +18,7 @@ st.set_page_config(
 st.markdown("""
     <style>
         body {
-            background-image: url('"C:\Users\DELL\Downloads\aiimg.jpg"');
+            background-image: url('"C:\\Users\\DELL\\Downloads\\aiimg.jpg"');
             background-size: cover;
             color: white;
         }
