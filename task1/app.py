@@ -4,6 +4,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from io import StringIO
 
 # Set page configuration
 st.set_page_config(
@@ -12,6 +13,25 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
+
+# Add custom CSS for background and styling
+st.markdown("""
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1506748686218-54d23f5d87e1');
+            background-size: cover;
+            color: white;
+        }
+        .main {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .sidebar .sidebar-content {
+            background: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 # Load model
 model_path = 'model.pkl'
