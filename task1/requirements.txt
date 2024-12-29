@@ -4,3 +4,5 @@ joblib
 matplotlib
 qrcode
 folium
+pyzbar
+streamlit-folium
