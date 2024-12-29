@@ -19,8 +19,8 @@ st.set_page_config(
 # model_path = os.path.join(current_dir, 'model.pkl')
 # model = joblib.load(model_path)
 
-#model_path = 'model.pkl'
-model_path = os.path.join(os.getcwd(), 'model.pkl')
+model_path = 'model.pkl'
+#model_path = os.path.join(os.getcwd(), 'model.pkl')
 if os.path.exists(model_path):
     model = joblib.load(model_path)
     st.success("Model loaded successfully!")
