@@ -20,7 +20,7 @@ st.set_page_config(
 # model = joblib.load(model_path)
 
 #model_path = 'model.pkl'
-model_path = os.path.join(os.getcwd(), 'model.pkl')
+model_path = 'orinson-technologies-internship/task1/model.pkl'
 if os.path.exists(model_path):
     model = joblib.load(model_path)
     st.success("Model loaded successfully!")
