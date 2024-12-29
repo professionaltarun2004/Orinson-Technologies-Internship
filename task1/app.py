@@ -21,9 +21,16 @@ if os.path.exists(model_path):
 else:
     st.error(f"Model file not found at {model_path}. Please upload the model file.")
 
-# Sidebar for navigation
+# Sidebar for navigation with widgets
 st.sidebar.title("Navigation")
 st.sidebar.markdown("Use the options below to interact with the app:")
+
+# Add interactivity for plot color choices
+plot_color = st.sidebar.color_picker("Pick a color for plots", '#1f77b4')
+
+# Add widgets for custom input
+st.sidebar.subheader("Adjust Visualization Settings")
+feature_count = st.sidebar.slider("Select Number of Features", min_value=2, max_value=10, value=5)
 
 # Main title and description
 st.title("Machine Learning Prediction App")
@@ -58,39 +65,50 @@ if input_data:
     data_dict = {f"Feature {i+1}": [float(x)] for i, x in enumerate(input_data.split(","))}
     df = pd.DataFrame(data_dict)
 
-    # Interactive Plot Type Selector
-    st.sidebar.header("Choose Plot Type")
-    plot_type = st.sidebar.selectbox("Select Visualization Type", ["Bar", "Line", "Scatter"])
+    # Display 6 types of plots
+    st.subheader("Multiple Visualizations")
 
-    # Improved Bar Chart
-    if plot_type == "Bar":
-        fig, ax = plt.subplots(figsize=(8, 5))
-        ax.bar(df.columns, df.iloc[0], color='skyblue', edgecolor='black')
-        ax.set_title("Feature Values (Bar Chart)", fontsize=16, color='darkblue')
-        ax.set_xlabel("Features", fontsize=12)
-        ax.set_ylabel("Values", fontsize=12)
-        st.pyplot(fig)
+    fig, axes = plt.subplots(2, 3, figsize=(18, 10))
 
-    # Improved Line Plot
-    elif plot_type == "Line":
-        fig, ax = plt.subplots(figsize=(8, 5))
-        ax.plot(df.columns, df.iloc[0], color='purple', marker='o', linestyle='-', linewidth=2, markersize=8)
-        ax.set_title("Feature Values (Line Plot)", fontsize=16, color='darkred')
-        ax.set_xlabel("Features", fontsize=12)
-        ax.set_ylabel("Values", fontsize=12)
-        ax.grid(True)
-        st.pyplot(fig)
+    # Bar Chart
+    axes[0, 0].bar(df.columns, df.iloc[0], color=plot_color, edgecolor='black')
+    axes[0, 0].set_title("Bar Chart", fontsize=14)
+    axes[0, 0].set_xlabel("Features", fontsize=12)
+    axes[0, 0].set_ylabel("Values", fontsize=12)
 
-    # Improved Scatter Plot
-    else:
-        fig, ax = plt.subplots(figsize=(8, 5))
-        ax.scatter(df.columns, df.iloc[0], color='orange', s=100, edgecolors='black')
-        ax.set_title("Feature Values (Scatter Plot)", fontsize=16, color='darkgreen')
-        ax.set_xlabel("Features", fontsize=12)
-        ax.set_ylabel("Values", fontsize=12)
-        st.pyplot(fig)
+    # Line Plot
+    axes[0, 1].plot(df.columns, df.iloc[0], color=plot_color, marker='o', linestyle='-', linewidth=2, markersize=8)
+    axes[0, 1].set_title("Line Plot", fontsize=14)
+    axes[0, 1].set_xlabel("Features", fontsize=12)
+    axes[0, 1].set_ylabel("Values", fontsize=12)
+    axes[0, 1].grid(True)
 
-    # Adding a dynamic chart to show the data distribution
+    # Scatter Plot
+    axes[0, 2].scatter(df.columns, df.iloc[0], color=plot_color, s=100, edgecolors='black')
+    axes[0, 2].set_title("Scatter Plot", fontsize=14)
+    axes[0, 2].set_xlabel("Features", fontsize=12)
+    axes[0, 2].set_ylabel("Values", fontsize=12)
+
+    # Histogram
+    axes[1, 0].hist(df.iloc[0], bins=5, color=plot_color, edgecolor='black')
+    axes[1, 0].set_title("Histogram", fontsize=14)
+    axes[1, 0].set_xlabel("Values", fontsize=12)
+    axes[1, 0].set_ylabel("Frequency", fontsize=12)
+
+    # Pie Chart
+    axes[1, 1].pie(df.iloc[0], labels=df.columns, autopct='%1.1f%%', colors=[plot_color] * len(df.columns), startangle=90)
+    axes[1, 1].set_title("Pie Chart", fontsize=14)
+
+    # Box Plot
+    axes[1, 2].boxplot(df.iloc[0], vert=False, patch_artist=True, boxprops=dict(facecolor=plot_color))
+    axes[1, 2].set_title("Box Plot", fontsize=14)
+    axes[1, 2].set_xlabel("Values", fontsize=12)
+
+    # Adjust layout and show
+    plt.tight_layout()
+    st.pyplot(fig)
+
+    # Data distribution chart
     st.header("Data Distribution")
     st.bar_chart(df.transpose())
 
@@ -101,4 +119,3 @@ st.markdown("""
     
     For further inquiries or support, please contact our team at [balivadatarun@gmail.com](mailto:balivadatarun@gmail.com).
 """)
-
