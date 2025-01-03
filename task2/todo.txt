@@ -1,0 +1,17 @@
+Task-2: Machine Learning Task
+
+Objective: Build a simple Linear Regression model to predict a 
+numerical value based on a single feature.
+
+Requirements:
+
+    Use a small dataset with at least two columns (one feature and one target variable).
+    Implement Linear Regression using a machine learning library.
+    Train and evaluate the model.
+    Visualize the regression line on a scatter plot.
+
+Deliverables:
+
+    Python script or Jupyter notebook with the implementation.
+    Summary of model performance metrics.
+    Plot of the regression line with the data points.
