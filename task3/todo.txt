@@ -1,0 +1,11 @@
+Task-3: Predict Housing Prices
+
+    Objective: Build a machine learning model that predicts 
+    house prices based on features like the size of the house, number of 
+    bedrooms, location, etc.
+
+                      ---------------- OR--------------
+
+Task -3: Sentiment Analysis on Movie Reviews
+
+    Objective: Classify movie reviews as positive or negative based on their text.
