@@ -1,4 +1,3 @@
-# Web Framework
 streamlit
 streamlit-folium
 pandas
