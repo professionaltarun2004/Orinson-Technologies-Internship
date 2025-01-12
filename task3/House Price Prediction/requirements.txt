@@ -7,4 +7,3 @@ joblib
 matplotlib
 plotly
 folium
-python-dotenv
