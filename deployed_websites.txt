@@ -1,2 +1,3 @@
 task1 -> https://task1-ml-app.streamlit.app/
 task2 -> https://task2-ml-app.streamlit.app/
+task3 -> https://task3-ml-app.streamlit.app/
