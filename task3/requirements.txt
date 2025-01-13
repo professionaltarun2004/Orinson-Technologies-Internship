@@ -1,6 +1,6 @@
 streamlit
 streamlit-folium
-panas
+pandas
 scikit-learn
 joblib
 matplotlib
