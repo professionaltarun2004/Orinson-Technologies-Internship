@@ -6,3 +6,7 @@ joblib
 matplotlib
 plotly
 folium
+numpy
+seaborn
+scipy
+
